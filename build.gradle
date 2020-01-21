@@ -23,6 +23,7 @@ allprojects {
 // assumed that all subprojects are java-based modules
 subprojects {
   apply from: "${rootDir}/gradle/java.gradle"
+  apply from: "${rootDir}/gradle/codequality.gradle"
 }
 
 task codeCoverageReport(type: JacocoReport) {
