@@ -1,0 +1,2 @@
+rootProject.name = 'spring-webflux-swagger-demo'
+include 'rest-api'

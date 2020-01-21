@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: rest-api
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    web: debug
