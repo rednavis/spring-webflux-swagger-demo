@@ -1,10 +1,10 @@
 package com.rednavis.webflux.demo.service;
 
+import com.rednavis.webflux.demo.model.Book;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
-import com.rednavis.webflux.demo.model.Book;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -27,7 +27,7 @@ public class BookService {
   }
 
   public Mono<Book> update(String id, Book book) {
-    if (!bookRepository.containsKey(id)){
+    if (!bookRepository.containsKey(id)) {
       throw new IllegalArgumentException();
     }
     bookRepository.put(id, book);
