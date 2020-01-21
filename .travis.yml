@@ -8,6 +8,8 @@ sudo: false
 # Get latest install-jdk.sh script
 before_install:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - sudo apt-get install jq
+  - curl -LSs $(curl -LSs https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({name, browser_download_url} | select(.name | endswith(".jar"))) | .[0].browser_download_url')" -o codacy-coverage-reporter-assembly.jar
 
 matrix:
   include:
@@ -29,3 +31,4 @@ cache:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/report.xml
