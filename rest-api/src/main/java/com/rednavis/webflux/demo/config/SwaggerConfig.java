@@ -1,4 +1,4 @@
-package com.rednavis.webflux.demo.swagger;
+package com.rednavis.webflux.demo.config;
 
 import java.util.Collections;
 import java.util.Optional;

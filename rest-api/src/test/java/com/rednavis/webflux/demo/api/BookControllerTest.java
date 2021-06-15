@@ -1,5 +1,6 @@
 package com.rednavis.webflux.demo.api;
 
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
@@ -10,16 +11,30 @@ import java.util.Objects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest(classes = {DemoApplication.class}, properties = {"logging.level.root=OFF"})
-@AutoConfigureWebTestClient(timeout = "10000")
+@EnableAutoConfiguration
+@SpringBootTest(
+    webEnvironment = RANDOM_PORT,
+    properties = {"spring.webflux.base-path=/"},
+    classes= DemoApplication.class
+)
 public class BookControllerTest {
 
+  // See https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#webtestclient
   @Autowired
-  protected WebTestClient webTestClient;
+  private WebTestClient webTestClient;
+
+  @Test
+  public void shouldFindRootContext() {
+    webTestClient.get()
+        .uri("/")
+        .exchange()
+        .expectStatus()
+        .is2xxSuccessful();
+  }
 
   private static Book create(final WebTestClient webTestClient, final Book book) {
     Objects.requireNonNull(webTestClient);

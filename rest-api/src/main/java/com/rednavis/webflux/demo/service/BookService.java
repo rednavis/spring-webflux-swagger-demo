@@ -21,7 +21,7 @@ public class BookService {
   }
 
   public Mono<Book> save(Book book) {
-    book = book.withId(UUID.randomUUID().toString());
+    book.setId(UUID.randomUUID().toString());
     bookRepository.put(book.getId(), book);
     return Mono.just(book);
   }

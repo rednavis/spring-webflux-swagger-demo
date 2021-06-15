@@ -4,8 +4,8 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = 12
-targetCompatibility = 12
+sourceCompatibility = JavaVersion.VERSION_11
+
 group = 'com.rednavis'
 version = '0.0.1-SNAPSHOT'
 
