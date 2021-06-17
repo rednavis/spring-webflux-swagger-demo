@@ -1,21 +1,24 @@
 package com.rednavis.webflux.demo.api;
 
 
-import org.springframework.http.MediaType;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import org.springframework.http.codec.multipart.FilePart;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 @RestController
 @RequestMapping("/upload")
 public class FileController {
+
     @PostMapping(value = "/")
     public Flux<String> upload(@RequestPart("file") Flux<FilePart> file) throws IOException {
         Flux<String> temp = file.concatMap(filePart -> createTempFile(filePart.filename())
