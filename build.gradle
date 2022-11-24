@@ -1,58 +1,58 @@
 buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.1")
-  }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.5")
+    }
 }
 
 plugins {
-  id 'org.springframework.boot' version '2.5.1' apply(false)
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply(false)
+    id 'org.springframework.boot' version '2.7.5' apply(false)
+    id 'io.spring.dependency-management' version '1.1.0' apply(false)
 }
 
 allprojects {
 
-  // needed because of multi-module configuration
-  apply plugin: 'jacoco'
+    // needed because of multi-module configuration
+    apply plugin: 'jacoco'
 
-  repositories {
-    mavenCentral()
-    jcenter() // TODO consider to remove it
-  }
+    repositories {
+        mavenCentral()
+        jcenter() // TODO consider to remove it
+    }
 }
 
 // assumed that all subprojects are java-based modules
 subprojects {
 
-  apply from: "${rootDir}/gradle/java.gradle"
-  apply from: "${rootDir}/gradle/checkstyle.gradle"
+    apply from: "${rootDir}/gradle/java.gradle"
+    apply from: "${rootDir}/gradle/checkstyle.gradle"
 
-  jacocoTestReport {
-    reports {
-      xml.enabled true
-      html.enabled false
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled false
+        }
     }
-  }
 }
 
 task codeCoverageReport(type: JacocoReport) {
-  executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
-  subprojects.each {
-    sourceSets it.sourceSets.main
-  }
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
 
-  reports {
-    xml.enabled true
-    xml.destination file("${buildDir}/reports/jacoco/report.xml")
-    html.enabled false
-    csv.enabled false
-  }
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
 }
 
 // https://github.com/codecov/example-gradle#-do-you-support-multi-module-projects
 codeCoverageReport.dependsOn {
-  subprojects*.test
+    subprojects*.test
 }
