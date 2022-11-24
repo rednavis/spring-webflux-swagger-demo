@@ -19,8 +19,7 @@ allprojects {
 
   repositories {
     mavenCentral()
-    jcenter()
-    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+    jcenter() // TODO consider to remove it
   }
 }
 
