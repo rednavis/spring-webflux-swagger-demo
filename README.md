@@ -7,8 +7,8 @@
 Demo of exposing REST API using Spring Boot / Spring WebFlux and Swagger IO
 
 # Prerequisites
-- OpenJDK 12.0.2 or higher
-- Gradle 6.1 or higher
+- OpenJDK 17.0.4 or higher
+- Gradle 7.3 or higher
 
 # How to build
 `./gradlew build`
