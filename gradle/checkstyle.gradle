@@ -3,7 +3,7 @@ def checkstyleUrl = "https://gitlab.com/rednavis/checkstyle/raw/master/config/ch
 apply plugin: 'checkstyle'
 
 checkstyle {
-  toolVersion '8.22'
+  toolVersion '10.4'
   ignoreFailures = true
   configDir = rootProject.file("config/checkstyle")
   configFile = rootProject.file("${rootDir}/config/checkstyle/checkstyle.xml")

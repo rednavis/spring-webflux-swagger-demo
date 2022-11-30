@@ -13,8 +13,8 @@ before_install:
 
 matrix:
   include:
-    - env: JDK=12
-      install: . ./install-jdk.sh --feature 12
+    - env: JDK=17
+      install: . ./install-jdk.sh --feature 17
 
 script:
   - ./gradlew --version
