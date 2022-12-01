@@ -14,7 +14,7 @@ Demo of exposing REST API using Spring Boot / Spring WebFlux and Swagger IO
 `./gradlew build`
 
 # How to lauch
-Run `./gradlew bootRun` and navigate to [Swagger UI](http://localhost:8080/swagger-ui.html) using your favorite browser. 
+Run `./gradlew bootRun` and navigate to [Swagger UI](http://localhost:8080/swagger-ui/) using your favorite browser. 
 
 # REST API exposed
 Reactive REST API endpoints exposed are published.

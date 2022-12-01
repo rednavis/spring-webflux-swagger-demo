@@ -2,9 +2,12 @@
  * Common settings for all Java modules.
  */
 apply plugin: 'java'
-apply plugin: 'idea'
 
-sourceCompatibility = JavaVersion.VERSION_17
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
 
 group = 'com.rednavis'
 version = '0.0.1-SNAPSHOT'

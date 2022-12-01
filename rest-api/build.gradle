@@ -12,13 +12,15 @@ springBoot {
 }
 
 dependencies {
+
     // Dependency injection
     implementation 'javax.inject:javax.inject:1'
 
     // Swagger 2 configuration
-    compile "io.springfox:springfox-swagger2:3.0.0"
-    compile "io.springfox:springfox-swagger-ui:3.0.0"
-    compile 'io.springfox:springfox-spring-webflux:3.0.0'
+    implementation "io.springfox:springfox-swagger2:3.0.0"
+    implementation "io.springfox:springfox-swagger-ui:3.0.0"
+    implementation 'io.springfox:springfox-spring-webflux:3.0.0'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'

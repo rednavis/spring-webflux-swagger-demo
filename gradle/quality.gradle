@@ -1,0 +1,61 @@
+/**
+ * Contains common configurations for working with code quality related to java projects.
+ */
+
+def checkstyleConfigDir = "$rootDir/config/checkstyle"
+
+// configure static code style plugins
+apply plugin: 'checkstyle'
+
+checkstyle {
+  toolVersion = '10.5.0'
+}
+
+tasks.withType(Checkstyle) {
+
+  configFile = new File(checkstyleConfigDir, "checkstyle.xml")
+  configProperties.checkstyleConfigDir = checkstyleConfigDir
+  reports {
+    xml.required = false
+    html.required = true
+    html.stylesheet resources.text.fromFile("$checkstyleConfigDir/styles.xsl")
+  }
+}
+
+// test coverage plugin
+apply plugin: "jacoco"
+
+jacocoTestReport {
+  dependsOn test
+  reports {
+    xml.enabled false
+    csv.enabled true
+    csv.outputLocation = layout.buildDirectory.file('jacoco.csv')
+    html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+  }
+  afterEvaluate {
+    classDirectories.setFrom(files(classDirectories.files.collect {
+      fileTree(dir: it)
+    }))
+  }
+  finalizedBy jacocoTestCoverageVerification
+}
+
+jacocoTestCoverageVerification {
+  afterEvaluate {
+    classDirectories.setFrom(files(classDirectories.files.collect {
+      fileTree(dir: it)
+    }))
+  }
+  violationRules {
+    failOnViolation = false
+    rule {
+      element = 'BUNDLE'
+      limit {
+        counter = 'INSTRUCTION'
+        value = 'COVEREDRATIO'
+        minimum = 0.200
+      }
+    }
+  }
+}
