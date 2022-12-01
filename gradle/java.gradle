@@ -2,9 +2,12 @@
  * Common settings for all Java modules.
  */
 apply plugin: 'java'
-apply plugin: 'idea'
 
-sourceCompatibility = JavaVersion.VERSION_11
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
 
 group = 'com.rednavis'
 version = '0.0.1-SNAPSHOT'
@@ -29,8 +32,8 @@ dependencies {
   implementation 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
 
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
-  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 test {

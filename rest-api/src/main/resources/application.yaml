@@ -1,11 +1,7 @@
 server:
   port: 8080
   application:
-    name: rest-api
-
-spring:
-  webflux:
-    base-path: /demo
+    name: api
 
 management:
   endpoints:

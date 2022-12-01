@@ -7,14 +7,14 @@
 Demo of exposing REST API using Spring Boot / Spring WebFlux and Swagger IO
 
 # Prerequisites
-- OpenJDK 12.0.2 or higher
-- Gradle 6.1 or higher
+- OpenJDK 17.0.4 or higher
+- Gradle 7.6 or higher
 
 # How to build
 `./gradlew build`
 
-# How to lauch
-Run `./gradlew bootRun` and navigate to [Swagger UI](http://localhost:8080/swagger-ui.html) using your favorite browser. 
+# How to launch
+Run `./gradlew bootRun` and navigate to [Swagger UI](http://localhost:8080/swagger-ui/) using your favorite browser. 
 
 # REST API exposed
 Reactive REST API endpoints exposed are published.
